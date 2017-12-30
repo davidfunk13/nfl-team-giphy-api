@@ -6,6 +6,11 @@ $(document).ready(function () {
         overwatchButtons.text(overwatchArray[i]);
         $('#querybuttons').append(overwatchButtons);
     }
+    $(document).on("click", ".owbutton", function () {
+        var buttonText = $(this).text();
+        console.log(buttonText);
+
+    });
     //Example Query (*USE HTTPS*)
     var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=3mnOK9PA7RKmAirX3qtFBIp7D2yIy0hQ&limit=5");
     xhr.done(function (data) {
