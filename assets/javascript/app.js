@@ -9,16 +9,19 @@ $(document).ready(function () {
         var searchTerms = $(this).attr('data-city');
         console.log(searchTerms)
         //url querying the api
-        var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchTerms + "&api_key=3mnOK9PA7RKmAirX3qtFBIp7D2yIy0hQ&limit=5";
+        var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchTerms + "&api_key=3mnOK9PA7RKmAirX3qtFBIp7D2yIy0hQ&limit=10";
         $.ajax({
             url: queryUrl,
             method: 'GET'
         }).done(function (response) {
-            console.log(response);
-            var gifUrl = response.data["0"].images.fixed_width.url;
-            console.log(gifUrl);
-            newGif = $("<img>").attr("src", gifUrl);
-            $('#results').append(newGif);
+            console.log({"API Response": response});
+            console.log({"Results length": response.data});
+            for (var j = 0; j < response.data.length; j++) {
+                var gifUrl = response.data[j].images.fixed_width.url;
+                console.log(gifUrl);
+                newGif = $("<img>").attr("src", gifUrl);
+                $('#results').append(newGif);
+            }
 
 $()
             // var newGif = $("<div class='newgif'>")
