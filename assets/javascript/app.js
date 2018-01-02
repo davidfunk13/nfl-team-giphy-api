@@ -39,4 +39,11 @@ $(document).ready(function () {
     displayButtons();
     //global click event listener
     $(document).on("click", ".teambutton", clickButtons);
+    $("#add-team").on("click", function(event) {
+        event.preventDefault();
+        var team = $("#team-input").val().trim();
+        nflTeams.push(team);
+        displayButtons();
+
+    });
 });
