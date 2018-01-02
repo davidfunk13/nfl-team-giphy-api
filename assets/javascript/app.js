@@ -27,6 +27,7 @@ $(document).ready(function () {
         });
     }
     function displayButtons(){
+        $("#querybuttons").empty();
         for (var i = 0; i < nflTeams.length; i++) {
             var buttonText = $(this).text();
             var teamButtons = $('<button>');
