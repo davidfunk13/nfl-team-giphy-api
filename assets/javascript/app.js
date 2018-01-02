@@ -21,6 +21,7 @@ $(document).ready(function () {
                 $('#results').append(gifContainer);
                 gifContainer.append(gifImage);
                 gifContainer.append("Rating: " + gifRating);
+                $('#results').prepend(gifContainer);
                 
             }
         });
