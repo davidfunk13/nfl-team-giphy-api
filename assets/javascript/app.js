@@ -1,8 +1,10 @@
 $(document).ready(function () {
     $(document).on("click",".returnedgif", function () {
-        console.log("wtf?")
-        gifToggleData = $(this).attr("data-animated");
-        console.log(gifToggleData);
+            gifToggleData = $(this).attr("data-animated");
+            stillLink = $(this).attr("src");
+            console.log(gifToggleData);
+            console.log("Toggled to animated!");
+            $(this).attr("src", gifToggleData);        
     });
     var queryButtonsDiv = $('#querybuttons');
     var nflTeams = [
@@ -26,17 +28,14 @@ $(document).ready(function () {
     ];
 
     function clickButtons() {
-        var searchTerms = $(this).attr('data-still');
+        var searchTerms = $(this).attr('data-team-name');
         console.log(searchTerms)
         var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + searchTerms + "&api_key=3mnOK9PA7RKmAirX3qtFBIp7D2yIy0hQ&limit=10";
         $.ajax({
             url: queryUrl,
             method: "GET"
         }).done(function (response) {
-            console.log({
-                "API Response": response
-            });
-
+            console.log({"API Response": response});
             for (var j = 0; j < response.data.length; j++) {
                 gifContainer = $("<div class='container'>");
                 var gifStill = response.data[j].images.fixed_width_still.url;
@@ -60,7 +59,7 @@ $(document).ready(function () {
             var teamButtons = $('<button>');
             teamButtons.addClass("teambutton");
             teamButtons.text(nflTeams[i]);
-            teamButtons.attr("data-still", nflTeams[i]);
+            teamButtons.attr("data-team-name", nflTeams[i]);
             queryButtonsDiv.append(teamButtons);
         }
     }
