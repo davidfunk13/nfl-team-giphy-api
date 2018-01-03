@@ -1,24 +1,29 @@
 $(document).ready(function () {
+    $(document).on("click",".returnedgif", function () {
+        console.log("wtf?")
+        gifToggleData = $(this).attr("data-animated");
+        console.log(gifToggleData);
+    });
     var queryButtonsDiv = $('#querybuttons');
     var nflTeams = [
-    "Baltimore Ravens",
-    "Atlanta Falcons",
-    "Houston Texans",
-    "Detroit Lions",
-    "Los Angeles Rams",
-    "New England Patriots",
-    "Denver Broncos",
-    "Miami Dolphins",
-    "Buffalo Bills",
-    "Chicago Bears",
-    "Philadelphia Eagles",
-    "New Orleans Saints",
-    "Green Bay Packers",
-    "Kansas City Cheifs",
-    "Seattle Seahawks",
-    "Dallas Cowboys",
-    "Cleveland Browns"
-];
+        "Baltimore Ravens",
+        "Atlanta Falcons",
+        "Houston Texans",
+        "Detroit Lions",
+        "Los Angeles Rams",
+        "New England Patriots",
+        "Denver Broncos",
+        "Miami Dolphins",
+        "Buffalo Bills",
+        "Chicago Bears",
+        "Philadelphia Eagles",
+        "New Orleans Saints",
+        "Green Bay Packers",
+        "Kansas City Cheifs",
+        "Seattle Seahawks",
+        "Dallas Cowboys",
+        "Cleveland Browns"
+    ];
 
     function clickButtons() {
         var searchTerms = $(this).attr('data-still');
@@ -28,31 +33,26 @@ $(document).ready(function () {
             url: queryUrl,
             method: "GET"
         }).done(function (response) {
-            var gifAnimated = response.data[j].images.fixed_width.url;
-            // document.on("click", '.returnedgif', function() {
-
-            // }
             console.log({
                 "API Response": response
             });
+
             for (var j = 0; j < response.data.length; j++) {
                 gifContainer = $("<div class='container'>");
                 var gifStill = response.data[j].images.fixed_width_still.url;
                 var gifRating = response.data[j].rating;
+                gifAnimated = response.data[j].images.fixed_width.url;
                 ratingText = "<p class='rating'>" + 'Rated: ' + gifRating.toUpperCase() + "</p>"
                 var gifTitle = response.data[j].title;
-                var returnedGif = $("<img class='returnedgif'>").attr("src", gifStill);
+                var returnedGif = $("<img class='returnedgif' data-animated='" + gifAnimated + "'>").attr("src", gifStill);
                 $('#results').append(gifContainer);
                 gifContainer.append(returnedGif);
                 gifContainer.append(ratingText);
                 $('#results').prepend(gifContainer);
-
             }
         });
     }
-    function toggleGifs() {
 
-    }
     function displayButtons() {
         $("#querybuttons").empty();
         for (var i = 0; i < nflTeams.length; i++) {
@@ -72,6 +72,6 @@ $(document).ready(function () {
         var team = $("#team-input").val().trim();
         nflTeams.push(team);
         displayButtons();
-
     });
+    
 });
