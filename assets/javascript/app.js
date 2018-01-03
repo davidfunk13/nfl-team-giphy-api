@@ -15,12 +15,12 @@ $(document).ready(function () {
                 gifContainer = $("<div class='container'>");
                 var gifUrl = response.data[j].images.fixed_width.url;
                 var gifRating = response.data[j].rating;
-                ratingText = $('<p>').text(gifRating);
+                ratingText = "<p class='rating'>"+ 'Rated: ' + gifRating.toUpperCase() + "</p>"
                 var gifTitle = response.data[j].title;
-                var gifImage = $("<img>").attr("src", gifUrl);
+                var gifImage = $("<img class='returnedgif'>").attr("src", gifUrl);
                 $('#results').append(gifContainer);
                 gifContainer.append(gifImage);
-                gifContainer.append("Rating: " + gifRating);
+                gifContainer.append(ratingText);
                 $('#results').prepend(gifContainer);
                 
             }
