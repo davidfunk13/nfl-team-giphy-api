@@ -3,8 +3,10 @@ $(document).ready(function () {
             gifToggleData = $(this).attr("data-animated");
             stillLink = $(this).attr("src");
             console.log(gifToggleData);
+            console.log(stillLink)
             console.log("Toggled to animated!");
-            $(this).attr("src", gifToggleData);        
+            $(this).attr("src", gifToggleData);
+            $(this).attr("data-animated", stillLink);        
     });
     var queryButtonsDiv = $('#querybuttons');
     var nflTeams = [
