@@ -1,1 +1,1 @@
-# week-6-giphy
+# Giphy API, NFL teams
